@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: HTML Check
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request
+  push:
+  pull_request:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # Requried will all actions
+      - name: Validate HTML5
+        uses: Cyb3r-Jak3/html5validator-action@v0.4.4
+        with:
+          root: /
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: log
+          path: log.log
